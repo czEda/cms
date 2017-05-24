@@ -26,10 +26,21 @@ class SmerovacKontroler extends Kontroler
     {
         $naparsovanaURL = $this->parsujURL($parametry[0]);
 
+        if (empty($naparsovanaURL[0]))
+            $this->presmeruj('clanek/uvod');
         $tridaKontroleru = $this->pomlckyDoVelbloudiNotace(array_shift($naparsovanaURL)) . 'Kontroler';
 
-        echo($tridaKontroleru);
-        echo('<br />');
-        print_r($naparsovanaURL);
+        if (file_exists('kontrolery/' . $tridaKontroleru . '.php'))
+            $this->kontroler = new $tridaKontroleru;
+        else
+            $this->presmeruj('chyba');
+
+        $this->kontroler->zpracuj($naparsovanaURL);
+
+        $this->data['titulek'] = $this->kontroler->hlavicka['titulek'];
+        $this->data['popis'] = $this->kontroler->hlavicka['popis'];
+        $this->data['klicova_slova'] = $this->kontroler->hlavicka['klicova_slova'];
+
+        $this->pohled = 'rozlozeni';
     }
 }
