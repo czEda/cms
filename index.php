@@ -10,3 +10,6 @@ function autoloadFunkce($trida) {
 }
 
 spl_autoload_register("autoloadFunkce");
+
+$smerovac = new SmerovacKontroler();
+$smerovac->zpracuj(array($_SERVER['REQUEST_URI']));
