@@ -11,6 +11,8 @@ function autoloadFunkce($trida) {
 
 spl_autoload_register("autoloadFunkce");
 
+Db::pripoj("127.0.0.1", "root", "", "mvc_db");
+
 $smerovac = new SmerovacKontroler();
 $smerovac->zpracuj(array($_SERVER['REQUEST_URI']));
 
