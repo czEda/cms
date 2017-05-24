@@ -3,7 +3,7 @@ mb_internal_encoding("UTF-8");
 
 function autoloadFunkce($trida) {
     // Končí název třídy řetězcem "Kontroler" ?
-    if (preg_match('/Kontroler$', $trida))
+    if (preg_match('/Kontroler$/', $trida))
         require("kontrolery/" . $trida . ".php");
     else
         require("modely/" . $trida . ".php");
