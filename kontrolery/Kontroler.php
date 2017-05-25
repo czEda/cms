@@ -14,7 +14,7 @@ abstract class Kontroler
             return htmlspecialchars($x, ENT_QUOTES);
         elseif (is_array($x))
         {
-            foreach ($x as $k -> $v)
+            foreach($x as $k => $v)
             {
                 $x[$k] = $this->osetri($v);
             }
@@ -31,6 +31,26 @@ abstract class Kontroler
             extract($this->data, EXTR_PREFIX_ALL, "");
             require("pohledy/" . $this->pohled . ".phtml");
         }
+    }
+
+    public function pridejZpravu($zprava)
+    {
+        if (isset($_SESSION['zpravy']))
+            $_SESSION['zpravy'][] = $zprava;
+        else
+            $_SESSION['zpravy'] = array($zprava);
+    }
+
+    public static function vratZpravy()
+    {
+        if (isset($_SESSION['zpravy']))
+        {
+            $zpravy = $_SESSION['zpravy'];
+            unset($_SESSION['zpravy']);
+            return $zpravy;
+        }
+        else
+            return array();
     }
 
     public function presmeruj($url)

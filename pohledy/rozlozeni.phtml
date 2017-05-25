@@ -15,7 +15,9 @@
     <header>
         <h1>Ukazkovy web</h1>
     </header>
-
+    <?php foreach ($zpravy as $zprava) : ?>
+    <p class="zprava"><?= $zprava ?></p>
+    <?php endforeach ?>
     <nav>
         <ul>
             <li><a href="clanek/uvod">Uvod</a></li>

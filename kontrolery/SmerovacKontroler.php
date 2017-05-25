@@ -40,6 +40,7 @@ class SmerovacKontroler extends Kontroler
         $this->data['titulek'] = $this->kontroler->hlavicka['titulek'];
         $this->data['popis'] = $this->kontroler->hlavicka['popis'];
         $this->data['klicova_slova'] = $this->kontroler->hlavicka['klicova_slova'];
+        $this->data['zpravy'] = $this->vratZpravy();
 
         $this->pohled = 'rozlozeni';
     }
