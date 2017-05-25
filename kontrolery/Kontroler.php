@@ -60,5 +60,16 @@ abstract class Kontroler
         exit;
     }
 
+    public function overUzivatele($admin = false)
+    {
+        $spravceUzivatelu = new SpravceUzivatelu();
+        $uzivatel = $spravceUzivatelu->vratUzivatele();
+        if (!$uzivatel || ($admin && !$uzivatel['admin']))
+        {
+            $this->pridejZpravu('Nedostatecna opravneni');
+            $this->presmeruj(prihlaseni);
+        }
+    }
+
     abstract function zpracuj($parametry);
 }

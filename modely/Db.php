@@ -49,4 +49,25 @@ class Db
         $navrat->execute($parametry);
         return $navrat->rowCount();
     }
+
+    public static function vloz($tabulka, $parametry = array())
+    {
+        return self::dotaz("INSERT INTO `$tabulka` (`".
+            implode('`, `', array_keys($parametry)).
+            "`) VALUES (".str_repeat('?,', sizeOf($parametry)-1)."?)",
+            array_values($parametry));
+    }
+
+    public static function zmen($tabulka, $hodnoty = array(), $podminka, $parametry = array())
+    {
+        return self::dotaz("UPDATE `$tabulka` SET `".
+            implode('` = ?, `', array_keys($hodnoty)).
+            "` = ? " . $podminka,
+            array_merge(array_values($hodnoty), $parametry));
+    }
+
+    public static function getLastId()
+    {
+        return self::$spojeni->lastInsertId();
+    }
 }

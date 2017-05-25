@@ -11,6 +11,14 @@ class SpravceClanku
             ', array($url));
     }
 
+    public function ulozClanek($id, $clanek)
+    {
+        if (!$id)
+            Db::vloz('clanky', $clanek);
+        else
+            Db::zmen('clanky', $clanek, 'WHERE clanky_id = ?', array($id));
+    }
+
     public function vratClanky()
     {
         return Db::dotazVsechny('
@@ -18,5 +26,13 @@ class SpravceClanku
                         FROM `clanky`
                         ORDER BY `clanky_id` DESC
                 ');
+    }
+
+    public function odstranClanek($url)
+    {
+        Db::dotaz('
+            DELETE FROM clanky
+            WHERE url = ?
+        ', array($url));
     }
 }
