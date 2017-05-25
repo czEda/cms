@@ -10,12 +10,18 @@ class KontaktKontroler extends Kontroler
             'popis' => 'Kontaktni formular naseho webu.'
         );
 
-        if (isset($_POST["email"]))
+        if ($_POST)
         {
-            if ($_POST['rok'] == date("Y"))
+            try
             {
                 $odesilacEmailu = new OdesilacEmailu();
-                $odesilacEmailu->odesli("milsimer@gmail.com", "Email z webu", $_POST['zprava'], $_POST['email']);
+                $odesilacEmailu->odesliSAntispamem($_POST['rok'], "admin@adresa.cz", "Email z webu", $_POST['zprava'], $_POST['email']);
+                $this->pridejZpravu('Email byl úspěšně odeslán.');
+                $this->presmeruj('kontakt');
+            }
+            catch (ChybaUzivatele $chyba)
+            {
+                $this->pridejZpravu($chyba->getMessage());
             }
         }
 

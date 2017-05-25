@@ -83,7 +83,7 @@ textarea {
     height: 90px;
 }
 
-.zprava {
+p.zprava {
     border: 1px solid #9DC2F8;
     background: #DBE8F8;
     padding: 3px;
