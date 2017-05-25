@@ -14,9 +14,9 @@ class SpravceClanku
     public function vratClanky()
     {
         return Db::dotazVsechny('
-            SELECT `clanky_id`, `titulek`, `url`, `popisek`,
-            FROM `clanky`
-            ORDER BY `clanky_id` DESC
-        ');
+                        SELECT `clanky_id`, `titulek`, `url`, `popisek`
+                        FROM `clanky`
+                        ORDER BY `clanky_id` DESC
+                ');
     }
 }
