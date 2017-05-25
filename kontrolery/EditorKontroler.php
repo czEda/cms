@@ -4,6 +4,7 @@ class EditorKontroler extends Kontroler
 {
     public function zpracuj($parametry)
     {
+        $this->overUzivatele(true);
         $this->hlavicka['titulek'] = 'Editor clanku';
         $spravceClanku = new SpravceClanku();
         $clanek = array(

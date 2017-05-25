@@ -5,6 +5,11 @@
         <td>
             <h2><a href="clanek/<?= $clanek['url'] ?>"><?= $clanek['titulek'] ?></a></h2>
             <?= $clanek['popisek'] ?>
+            <?php if ($admin) : ?>
+                <br />
+                <a href="editor/<?= $clanek['url'] ?>">Editovat</a>
+                <a href="clanek/<?= $clanek['url'] ?>/odstranit">Odstranit</a>
+            <?php endif ?>
         </td>
     </tr>
     <?php endforeach ?>
