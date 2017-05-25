@@ -6,25 +6,22 @@ class ClanekKontroler extends Kontroler
     {
         $spravceClanku = new SpravceClanku();
 
-        if (!empty($parametry[0]))
-        {
+        if (!empty($parametry[0])) {
             $clanek = $spravceClanku->vratClanek($parametry[0]);
-            if(!$clanek)
+            if (!$clanek)
                 $this->presmeruj('chyba');
 
             $this->hlavicka = array(
                 'titulek' => $clanek['titulek'],
                 'klicova_slova' => $clanek['klicova_slova'],
-                'popis' => $clanek['popis'],
+                'popis' => $clanek['popisek'],
             );
 
             $this->data['titulek'] = $clanek['titulek'];
             $this->data['obsah'] = $clanek['obsah'];
 
             $this->pohled = 'clanek';
-        }
-        else
-        {
+        } else {
             $clanky = $spravceClanku->vratClanky();
             $this->data['clanky'] = $clanky;
             $this->pohled = 'clanky';
